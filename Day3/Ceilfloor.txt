@@ -1,0 +1,21 @@
+
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+    // code here
+    
+   
+    int c=INT_MAX,f=INT_MIN;
+    
+    for(int i=0;i<n;i++)
+    {
+        if(arr[i]>=x)
+        c=min(arr[i],c);
+        if(arr[i]<=x)
+        f=max(arr[i],f);
+    }
+    
+    
+    if(c==INT_MAX)c=-1;
+    if(f==INT_MIN)f=-1;
+    
+    return {f,c};
+}
