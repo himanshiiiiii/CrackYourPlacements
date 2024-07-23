@@ -1,51 +1,41 @@
 class Solution {
 public:
-    bool isValid(string &curr)
-    {
-        int n=curr.length();
-        stack<char>st;
-        
-        for(int i=0;i<n;i++)
-        {
-            if(!st.empty())
-            {
-                if(st.top()=='(' && curr[i]==')')
-                    st.pop();
-                else
-                    st.push(curr[i]);
-            }
-            else
-                
-            st.push(curr[i]);
-        }
-        
-        return st.empty();
-    }
-    void solve(vector<string>&res,string &curr,int n)
+   
+    void solve(vector<string>&res,string &curr,int n,int open,int close)
     {
         //means hr k liye 2 bracket ek open ek close
         if(curr.length()==2*n)
         {
-            if(isValid(curr))
                 res.push_back(curr);
             return ;
         }
         
         
         //ek baar open dalnge ek baar close
+        if(open<n)
+        {
         curr.push_back('(');
-         solve(res,curr,n);
+            open+1;
+       solve(res,curr,n,open+1,close);
+            open-1;
              curr.pop_back();
+    }
+         if(close<open)
+         {
           curr.push_back(')');
-         solve(res,curr,n);
+         close+1;
+         solve(res,curr,n,open,close+1);
+             close-1;
              curr.pop_back();
-        
+     
+         }       
     }
     
     vector<string> generateParenthesis(int n) {
         vector<string>res;
     string curr="";
-        solve(res,curr,n);
+        int open=0,close=0;
+        solve(res,curr,n,open,close);
         
         return res;
         
