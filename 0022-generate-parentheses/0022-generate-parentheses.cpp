@@ -15,17 +15,17 @@ public:
         if(open<n)
         {
         curr.push_back('(');
-            open+1;
-       solve(res,curr,n,open+1,close);
-            open-1;
+            open++;
+       solve(res,curr,n,open,close);
+            open--;
              curr.pop_back();
     }
          if(close<open)
          {
           curr.push_back(')');
-         close+1;
-         solve(res,curr,n,open,close+1);
-             close-1;
+         close++;
+         solve(res,curr,n,open,close);
+             close--;
              curr.pop_back();
      
          }       
