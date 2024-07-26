@@ -6,7 +6,7 @@ public:
         stack<int>st;
         for(int i=0;i<n;i++)
         {
-        while(!st.empty() && arr[st.top()]>arr[i])
+        while(!st.empty() && arr[st.top()]>=arr[i])
             st.pop();
             int val=(st.empty())?-1:st.top();
             ans[i]=val;
@@ -20,7 +20,7 @@ public:
         stack<int>st;
         for(int i=n-1;i>=0;i--)
         {
-        while(!st.empty() && arr[st.top()]>=arr[i])
+        while(!st.empty() && arr[st.top()]>arr[i])
             st.pop();
             int val=(st.empty())?n:st.top();
             ans[i]=val;
