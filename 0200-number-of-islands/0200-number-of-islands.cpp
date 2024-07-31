@@ -1,17 +1,22 @@
 class Solution {
 public:
     
-    void dfs(int l,int h,int m,int n,vector<vector<char>>& grid)
+    void dfs(int x,int y,int m,int n,vector<vector<char>>& grid)
     {
-        if(l<0 ||h<0||l>=n|| h>=m || grid[l][h]!='1')
-        return ;
         
-        
-        grid[l][h]='$';
-         dfs(l+1,h,m,n,grid);
-        dfs(l-1,h,m,n,grid);
-        dfs(l,h+1,m,n,grid);
-        dfs(l,h-1,m,n,grid);
+      int dx[]={0,-1,0,1};
+      int dy[]={1,0,-1,0};
+      
+        for(int i=0;i<4;i++)
+        {
+            int nx=x+dx[i];
+            int ny=y+dy[i];
+            if(nx>=0 && ny>=0 &&nx<n && ny<m && grid[nx][ny]=='1')
+            {
+                grid[nx][ny]='$';
+                dfs(nx,ny,m,n,grid);
+            }
+        }
     }
     
     int numIslands(vector<vector<char>>& grid) {
